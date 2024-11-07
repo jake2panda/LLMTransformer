@@ -109,6 +109,35 @@ model = model.to(device)
 
 #using own tokenizer
 
+
+
+#Implementing user prompt to ask question to out llm
+## this prompt is not like question answer but it is just sequence completing user prompt
+
+
+"""
+If someone want to implement user prompt uncomment user prompt code
+
+"""
+
+# user_prompt = input("Ask-LLM ~$ ")
+
+
+# encoded_prompt = torch.tensor(encode(user_prompt), dtype=torch.long)
+
+# prompt_len = len(encoded_prompt)
+
+# prompt = encoded_prompt.view(1,prompt_len)
+
+
+# Generating text before traing the model
+
+
+#If you use user prompt use this one
+#print("".join(decode(model.generate(prompt.to(device), max_new_tokens=400)[0].tolist())))
+
+
+#if you use without user prompt
 print("".join(decode(model.generate(torch.zeros((1,1), dtype=torch.long).to(device), max_new_tokens=400)[0].tolist())))
 
 # this one is for gpt2 ro any other tokenizer
@@ -121,23 +150,34 @@ print("".join(decode(model.generate(torch.zeros((1,1), dtype=torch.long).to(devi
 optimizer = torch.optim.Adam(model.parameters(), lr)
 
 
-for epoch in range(10000):
+for epoch in range(100):
 	za, zb = get_batch(train)
 	logits,loss = model.forward(za.to(device), zb.to(device))
 
-	if epoch % 1000 == 0:
+	if epoch % 10 == 0:
 		print("loss : ", loss)
 	optimizer.zero_grad()
 	loss.backward()
 	optimizer.step()
 
 
+
+#After training the model
+
+
+
 # using own implemented decoder
+
+## if you use user prompt
+#print("".join(decode(model.generate(prompt.to(device), max_new_tokens=400)[0].tolist())))
+
+
+## this one is for without user prompt
 
 print("".join(decode(model.generate(torch.zeros((1,1), dtype=torch.long).to(device), max_new_tokens=400)[0].tolist())))
 
 
-# this is for any other tokenizer
+# this is for any other standard tokenizer
 
 #print("".join(tokenizer.decode(model.generate(torch.zeros((1,1), dtype=torch.long).to(device), max_new_tokens=400)[0].tolist())))
 
