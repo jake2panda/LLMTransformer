@@ -8,7 +8,7 @@
 
 
 
-Here I have shown a simple text generating llm model.You can train this model using any text you want.I ran it on machine on a cpu and with this current configurations I was abe to reduce loss up to 1.6264.
+Here I have shown a simple text generating llm model.You can train this model using any text you want.I ran it on my machine on a cpu and with this current configurations I was abe to reduce loss up to 1.6264.
 
 Here is my training loss
 
