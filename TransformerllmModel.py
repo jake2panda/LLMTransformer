@@ -83,10 +83,6 @@ class TransfomerLLMModel(nn.Module):
     self.block_size = block_size
     self.token_embed = nn.Embedding(vocab_size, n_embed)
     self.positional_embedding = nn.Embedding(block_size,n_embed)
-    #self.sa_head = Head(n_embed)
-    # self.mul_head = MultiheadAttention(n_embed//num_head, num_head)
-    # self.ffwd_layer = FeedForward(n_embed)
-
     self.blocks = nn.Sequential(
     		Block(n_embed, num_head, block_size, dropout),
     		Block(n_embed, num_head, block_size, dropout),
