@@ -1,2 +1,2 @@
 # LLMTransformer
-Very Interesting LLM transformer
+# This is a very basic Transformer LLM model implemented using Attention is all you need paper.
