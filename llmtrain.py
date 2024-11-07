@@ -150,11 +150,11 @@ print("".join(decode(model.generate(torch.zeros((1,1), dtype=torch.long).to(devi
 optimizer = torch.optim.Adam(model.parameters(), lr)
 
 
-for epoch in range(100):
+for epoch in range(10000):
 	za, zb = get_batch(train)
 	logits,loss = model.forward(za.to(device), zb.to(device))
 
-	if epoch % 10 == 0:
+	if epoch % 1000 == 0:
 		print("loss : ", loss)
 	optimizer.zero_grad()
 	loss.backward()
@@ -167,7 +167,7 @@ for epoch in range(100):
 
 
 # using own implemented decoder
-
+0
 ## if you use user prompt
 #print("".join(decode(model.generate(prompt.to(device), max_new_tokens=400)[0].tolist())))
 
